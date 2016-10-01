@@ -1,6 +1,6 @@
 package testGitHub;
 
-//This program generates three integers and prompts the user to enter the sum
+//This program generates two integers and prompts the user to enter the sum
 
 import java.util.Scanner;
 
