@@ -11,6 +11,18 @@ public class Flight {
 	private LocalDate arrivalDate;
 	private LocalTime departureTime;
 	private LocalTime arrivalTime;
+	private int flightId;
+	
+	public Flight(){
+		
+	}
+	
+	public Flight(int flightId){
+		this.setFlightId(flightId);
+		
+	}
+	
+	
 	/**
 	 * @return the departureCity
 	 */
@@ -94,6 +106,20 @@ public class Flight {
 	 */
 	public void setArrivalTime(LocalTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
+	}
+
+	/**
+	 * @return the flightId
+	 */
+	public int getFlightId() {
+		return flightId;
+	}
+
+	/**
+	 * @param flightId the flightId to set
+	 */
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
 	}
 	
 	

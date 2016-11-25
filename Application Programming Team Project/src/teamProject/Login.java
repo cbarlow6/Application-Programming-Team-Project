@@ -1,6 +1,6 @@
 package teamProject;
 
-public class Login {
+public class Login extends Account{
 	String userName;
 	String password;
 	String question;
