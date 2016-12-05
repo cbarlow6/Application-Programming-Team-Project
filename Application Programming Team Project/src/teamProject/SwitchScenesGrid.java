@@ -1,22 +1,22 @@
 package teamProject;
-
-
-//import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+//import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-//import javafx.event.EventHandler;
+//import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
 
-public class SwitchScenes extends Application {
-	
-	//private static final Pos CENTER_LEFT = null;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+//import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+
+
+public class SwitchScenesGrid extends Application {
+	public static void main(String[] args){
+	launch(args);
+}
 	Stage window;
 	Scene mainMenu, loginPage, register, customer, admin;
 	
@@ -29,21 +29,12 @@ public class SwitchScenes extends Application {
 	Button returnMain = new Button("Return to Main Menu");
 	Button returnMain2 = new Button("Return to Main Menu");
 	Button returnMain3 = new Button("Return to Main Menu");
-	
-	
-	public static void main(String[] args){
-	launch(args);
-}
-	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		window = primaryStage;
+		window.setTitle("Flight Reservation System");
 		
-		GridPane newgrid = new GridPane ();
-		newgrid.setPadding(new Insets (10, 10, 10, 10));
-		
-		//newgrid.setConstraints(adminButton, 0, 8);
 		
 		//Login Button
 		Label mainMenuLabel = new Label("Main Menu");
@@ -98,17 +89,31 @@ public class SwitchScenes extends Application {
 		
 		
 		//Login Page Layout
-		StackPane loginLayout  = new StackPane();
+		GridPane newGrid = new GridPane ();
+		newGrid.setPadding(new Insets (10, 10, 10, 10));
+		newGrid.setVgap(8);
+		newGrid.setHgap(10);
+		GridPane.setConstraints(loginLabel, 0, 0);
+		GridPane.setConstraints(mainMenuButton, 20, 20);
+		GridPane.setConstraints(registerButton, 15, 6);
+		GridPane.setConstraints(customerButton, 5, 5);
+		GridPane.setConstraints(adminButton, 5, 7);
+		newGrid.getChildren().addAll(loginLabel, mainMenuButton, registerButton, customerButton, adminButton);
+		loginPage = new Scene(newGrid, 600, 300);
+		
+		
+		
+		/*StackPane loginLayout  = new StackPane();
 		loginLayout.getChildren().addAll(loginLabel, mainMenuButton, registerButton, customerButton, adminButton);
 		StackPane.setAlignment(loginLabel, Pos.TOP_CENTER);
 		StackPane.setAlignment(mainMenuButton, Pos.TOP_RIGHT);
 		StackPane.setAlignment(registerButton, Pos.CENTER);
 		StackPane.setAlignment(customerButton, Pos.CENTER_RIGHT);
 		StackPane.setAlignment(adminButton, Pos.CENTER_LEFT);
-		loginPage = new Scene(loginLayout, 600, 300);
+		loginPage = new Scene(loginLayout, 600, 300);*/
 			
 		window.setScene(mainMenu);
-		window.setTitle("Flight Reservation System");
+		//window.setTitle("Flight Reservation System");
 		window.show();
 			
 		/*primaryStage.setTitle("Flight");
@@ -126,4 +131,6 @@ public class SwitchScenes extends Application {
 	}
 	
 }
+
+
 
