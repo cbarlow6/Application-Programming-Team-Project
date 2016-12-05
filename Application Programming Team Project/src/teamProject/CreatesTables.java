@@ -22,13 +22,22 @@ public class CreatesTables {
 		Statement myStmt = myconn.createStatement();
 		
 		//Drop table
-		//String DROP = "DROP TABLE FLIGHTS";
-		//myStmt.executeUpdate(DROP);
+		
+		//String dropCustomer = "DROP TABLE CUSTOMER";
+		//String dropAdmin= "DROP TABLE ADMIN";
+		String dropBooking= "DROP TABLE BOOKING";
+		//String dropUser = "DROP TABLE USER";
+		String dropFlights = "DROP TABLE FLIGHTS";
+		//myStmt.executeUpdate(dropCustomer);
+		//myStmt.executeUpdate(dropAdmin);
+		myStmt.executeUpdate(dropBooking);
+		myStmt.executeUpdate(dropFlights);
+		//myStmt.executeUpdate(dropUser);
 		
 		//Create user table
 				/*String USER = "CREATE TABLE USER (userName VARCHAR(30) PRIMARY KEY, firstName VARCHAR(30) NOT NULL,"
 						+"lastName VARCHAR(30) NOT NULL, address VARCHAR(30) NOT NULL, city VARCHAR(30) NOT NULL,"
-						+"zip VARCHAR(30) NOT NULL, state VARCHAR(30) NOT NULL, password VARCHAR(30) NOT NULL,"
+						+"state VARCHAR(30) NOT NULL, zip VARCHAR(30) NOT NULL, password VARCHAR(30) NOT NULL,"
 						+ "email VARCHAR(30) NOT NULL, SSN VARCHAR(30) NOT NULL, securityQuestion VARCHAR(30) NOT NULL,"
 						+ "userType VARCHAR(30) NOT NULL)";
 				
@@ -40,22 +49,22 @@ public class CreatesTables {
 						+ "FOREIGN KEY(userName) REFERENCES USER(userName))";
 				
 				myStmt.executeUpdate(CUSTOMER);
-				System.out.println("Customer table created");
+				System.out.println("Customer table created");*/
 				
 		//Create admin table
-		String ADMIN = "CREATE TABLE ADMIN(userName VARCHAR(30) PRIMARY KEY, privilegeLevel INT NOT NULL,"
-				+ "FOREIGN KEY(userName) REFERENCES USER(userName))";
+		/*String ADMIN = "CREATE TABLE ADMIN(userName VARCHAR(30) PRIMARY KEY, user_userName VARCHAR(30) NOT NULL, privilegeLevel INT NOT NULL,"
+				+ "FOREIGN KEY(user_userName) REFERENCES USER(userName))";
 		
 		myStmt.executeUpdate(ADMIN);
-		System.out.println("Admin table created");
+		System.out.println("Admin table created");*/
 			
 		//Create flights table
-		String FLIGHTS = "CREATE TABLE FLIGHTS(flightId INTEGER PRIMARY KEY, departureCity VARCHAR(50) NOT NULL,"
-				+"arrivalCity VARCHAR(50) NOT NULL, departureDate DATETIME NOT NULL, arrivalDate DATETIME NOT NULL,"
-				+"departureTime DATETIME NOT NULL, arrivalTime DATETIME NOT NULL, numberOfPassengers INTEGER NOT NULL)";
+		String FLIGHTS = "CREATE TABLE FLIGHTS(flightId INTEGER PRIMARY KEY, departCity VARCHAR(50) NOT NULL,"
+				+"arrivalCity VARCHAR(50) NOT NULL, departDate DATE NOT NULL, arrivalDate DATE NOT NULL,"
+				+"departTime TIME NOT NULL, arrivalTime TIME NOT NULL, maxPassengers INTEGER NOT NULL)";
 				
 				myStmt.executeUpdate(FLIGHTS);
-				System.out.println("Flights table created");*/		
+				System.out.println("Flights table created");		
 		
 		//Create booking table
 			String BOOKING = "CREATE TABLE BOOKING(bookingId INT PRIMARY KEY,"
