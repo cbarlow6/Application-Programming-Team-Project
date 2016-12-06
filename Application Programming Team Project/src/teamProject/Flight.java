@@ -3,37 +3,33 @@ package teamProject;
 import java.time.*;
 
 public class Flight {
-
-	private String departureCity;
-	private String arrivalCity;
-	private int numberOfPassengers;
-	private LocalDate departureDate;
-	private LocalDate arrivalDate;
-	private LocalTime departureTime;
-	private LocalTime arrivalTime;
 	private int flightId;
+	private String departCity;
+	private String arrivalCity;
+	private LocalDate departDate;
+	private LocalDate arrivalDate;
+	private LocalTime departTime;
+	private LocalTime arrivalTime;
+	private int numberOfPassengers;
 	
 	public Flight(){
 		
 	}
-	
 	public Flight(int flightId){
-		this.setFlightId(flightId);
-		
+		this.setFlightId(flightId);	
 	}
-	
 	
 	/**
 	 * @return the departureCity
 	 */
-	public String getDepartureCity() {
-		return departureCity;
+	public String getDepartCity() {
+		return departCity;
 	}
 	/**
 	 * @param departureCity the departureCity to set
 	 */
-	public void setDepartureCity(String departureCity) {
-		this.departureCity = departureCity;
+	public void setDepartCity(String departCity) {
+		this.departCity = departCity;
 	}
 	/**
 	 * @return the arrivalCity
@@ -62,14 +58,14 @@ public class Flight {
 	/**
 	 * @return the departureDate
 	 */
-	public LocalDate getDepartureDate() {
-		return departureDate;
+	public LocalDate getDepartDate() {
+		return departDate;
 	}
 	/**
 	 * @param departureDate the departureDate to set
 	 */
-	public void setDepartureDate(LocalDate departureDate) {
-		this.departureDate = departureDate;
+	public void setDepartDate(LocalDate departDate) {
+		this.departDate = departDate;
 	}
 	/**
 	 * @return the arrivalDate
@@ -86,14 +82,14 @@ public class Flight {
 	/**
 	 * @return the departureTime
 	 */
-	public LocalTime getDepartureTime() {
-		return departureTime;
+	public LocalTime getDepartTime() {
+		return departTime;
 	}
 	/**
 	 * @param departureTime the departureTime to set
 	 */
-	public void setDepartureTime(LocalTime departureTime) {
-		this.departureTime = departureTime;
+	public void setDepartTime(LocalTime departTime) {
+		this.departTime = departTime;
 	}
 	/**
 	 * @return the arrivalTime
