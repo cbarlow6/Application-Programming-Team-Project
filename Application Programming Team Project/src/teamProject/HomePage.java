@@ -1,6 +1,7 @@
 package teamProject;
 
 
+import java.awt.SplashScreen;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.event.*;
@@ -22,6 +23,8 @@ public class HomePage extends Application {
 	Scene scene, scene2, scene3;
 
 	public static void main(String[] args) {
+		
+
 		launch(args);
 		
 		try {
@@ -30,19 +33,14 @@ public class HomePage extends Application {
 		catch (Exception e){
 			e.printStackTrace();
 		}
-	}
-
-
-//	public void runAnotherApp(Class<? extends Application> BookingPage) throws Exception {
-//		Application app2 = BookingPage.newInstance();
-//		Stage anotherStage = new Stage();
-//		app2.start(anotherStage);
-//	
-//	}
-//	
+	}	
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+        
+		
+		
 		window = primaryStage;
 
 		
@@ -92,23 +90,20 @@ public class HomePage extends Application {
 
 			    			System.out.println("Match!");
 				    		window.close();
-				    		BookingPage bp = new BookingPage();
+				    		CustomerSuccess bp = new CustomerSuccess();
 				    		bp.start(primaryStage);
 				    	}
 						
 				    	else {
 				    		//JFrame frame = new JFrame();
-				    		Alert alert = new Alert(AlertType.WARNING);
+				    		Alert alert = new Alert(AlertType.ERROR);
 				    		alert.setTitle("Invalid password");
+				    		alert.setContentText("Invalid username and password. If you are not registered, please signup or use the forgot password");
 				    		alert.showAndWait();
 				    		nameInput.setText("");
 							passInput.setText("");
 				    	}
 			    		
-			    		//BookingPage.main(new String [] {});
-			    		
-			    //		BookingPage bp = new BookingPage();
-			    //		bp.start(primaryStage);
 			    	}
 			    	
 			    	catch (Exception e) {
@@ -125,7 +120,7 @@ public class HomePage extends Application {
 	    
 	    Button notRegistered = new Button ("Not registered?");
 	    GridPane.setConstraints(notRegistered, 2, 8);
-	    
+	     
 	    Button forgotPassword = new Button ("Forgot your password?");
 	    GridPane.setConstraints(forgotPassword, 3, 8);
 	    
@@ -157,6 +152,41 @@ public class HomePage extends Application {
 		
 	    Button adminLoginButton = new Button ("Login");
 	    GridPane.setConstraints(adminLoginButton, 1, 22);
+	    
+	    adminLoginButton.setOnAction(new EventHandler<ActionEvent> () {
+			@Override
+			public void handle(ActionEvent event) {
+		    	String adminUserName = adminUsernameInput.getText();
+		    	String adminPassword = adminPasswordInput.getText();
+		    	
+		    	try {
+		    		if (adminUserName.equals("admin")  && adminPassword.equals("cis3270")){
+			    		window.close();
+			    		AdminSuccess bp = new AdminSuccess();
+			    		bp.start(primaryStage);
+			    	}
+					
+			    	else {
+			    		//JFrame frame = new JFrame();
+			    		Alert alert = new Alert(AlertType.ERROR);
+			    		alert.setTitle("Invalid password");
+			    		alert.setContentText("Restricted Access, Admin Only!");
+			    		alert.showAndWait();
+			    		adminUsernameInput.setText("");
+			    		adminPasswordInput.setText("");
+			    	}
+		    		
+		    	}
+		    	
+		    	catch (Exception e) {
+		    		System.out.println(e);
+		    	}
+		    	
+			}
+	    	
+	    }
+	    		    		
+	    		);
 
 	    grid.getChildren().addAll(customerLogin, nameLabel, nameInput, passLabel, passInput, loginButton, 
 	    notRegistered, forgotPassword, adminLogin, adminUsername, adminUsernameInput, adminPassword, 
@@ -289,6 +319,54 @@ public class HomePage extends Application {
 	    GridPane.setConstraints(returnToMenu, 2, 11);
 	    returnToMenu.setOnAction(e -> window.setScene(scene));
 	    
+	    
+	    submit.setOnAction(new EventHandler<ActionEvent> () {
+			@Override
+			public void handle(ActionEvent event) {
+				String firstName = firstNameInput.getText(); 
+				String lastName = lastNameInput.getText();
+				String address = addressInput.getText();
+				String city = cityInput.getText();
+				String state = stateInput.getText();
+				String zip = zipcodeInput.getText();
+				String userName = userNameInput.getText();
+				String password = passwordInput.getText();
+				String email = emailAddressInput.getText();
+				String SSN = ssnInput.getText();
+				String securityQuestion = securityQuestionInput.getText();
+		    	
+		    	try {
+		    		int i = UserAndDatabase.save(userName, firstName, lastName, address, city, state, zip, password, email, SSN, securityQuestion);
+		    		if (i>0) {
+		    		
+		    			Alert reg = new Alert (AlertType.CONFIRMATION);
+
+		    			reg.setTitle("Registration Sucess");
+			    		reg.setContentText("User Added Successfully");
+			    		reg.showAndWait();
+			    		window.close();
+			    	}
+					
+			    	else {
+			    		//JFrame frame = new JFrame();
+			    		Alert a1 = new Alert(AlertType.ERROR);
+			    		a1.setTitle("Error");
+			    		a1.setContentText("Registration Error");
+			    		a1.showAndWait();
+			    	}
+		    		
+		    	}
+		    	
+		    	catch (Exception e) {
+		    		System.out.println(e);
+		    	}
+		    	
+			}
+	    	
+	    }
+	    		    		
+	    		);
+	    
 		grid2.getChildren().addAll(firstName, firstNameInput, lastName, lastNameInput, address, addressInput, city, cityInput,  state, stateInput, zipcode, zipcodeInput, userName, userNameInput, password, passwordInput, emailAddress, emailAddressInput, ssn, ssnInput, securityQuestion, securityQuestionInput, submit, returnToMenu);
 
 		grid2.setStyle("-fx-background-color: lightskyblue");
@@ -323,6 +401,36 @@ public class HomePage extends Application {
 			Button retrievePassword = new Button ("Retrieve Password");
 		    GridPane.setConstraints(retrievePassword, 1, 3);
 		    
+		    retrievePassword.setOnAction(new EventHandler<ActionEvent> () {
+				@Override
+				public void handle(ActionEvent event) {
+			    	String username = forgotUsernameInput.getText();
+			    	String password = retrieveSecurityQuestionInput.getText();
+			    	
+			    	try {
+			    		String recovery = (UserAndDatabase.forgotPassword(username, password));
+
+			    		Alert alert = new Alert(AlertType.CONFIRMATION);
+			    		alert.setTitle("Password recovered");
+			    		alert.setContentText("Your password is " + recovery);
+			    		alert.showAndWait();
+			    		
+			    			System.out.println("Match!");
+				    		window.close();
+				    		start(primaryStage);
+				    	
+			    		
+			    	}
+			    	
+			    	catch (Exception e) {
+			    		System.out.println(e);
+			    	}
+			    	
+				}
+		    	
+		    }
+		    		    		
+		    		);
 		    Button returnToLogin = new Button ("Return to Login");
 		    GridPane.setConstraints(returnToLogin, 2, 3);
 		    returnToLogin.setOnAction(e -> window.setScene(scene));
