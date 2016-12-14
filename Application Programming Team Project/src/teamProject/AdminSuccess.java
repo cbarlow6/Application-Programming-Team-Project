@@ -173,9 +173,27 @@ public class AdminSuccess extends Application {
 		
 	    Button logOut = new Button ("     Log out      ");
 	    GridPane.setConstraints(logOut, 3, 16);
+	    logOut.setOnAction(new EventHandler<ActionEvent> () {
+
+			@Override
+			public void handle(ActionEvent event) {
+			
+			try {	
+
+              HomePage cbf = new HomePage ();
+              cbf.start(primaryStage);
+             
+		        
+			}
+			catch (Exception e) {
+	    		System.out.println(e);
+	    	}
+			}
+	    	
+	    });
 
 	    
-	    grid.getChildren().addAll(adminPage, viewCustomers, searchFlight, addFlight, deletFlight, logOut);
+	    grid.getChildren().addAll(adminPage, viewCustomers, addFlight, deletFlight, logOut);
 	    
 	    grid.setStyle("-fx-background-color: lightskyblue");
 	    scene = new Scene(grid, 650, 450);

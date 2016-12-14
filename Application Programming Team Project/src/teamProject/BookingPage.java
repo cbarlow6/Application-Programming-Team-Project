@@ -21,7 +21,7 @@ import javafx.stage.*;
 
 public class BookingPage extends Application {
 	
-	Button button;
+	Button button, button2;
 	Label label;
 	TextField textField, textField2;
 	CheckBox checkBox;
@@ -42,9 +42,32 @@ public class BookingPage extends Application {
 		primaryStage.setTitle("Airline Reservation System");	
 		button = new Button();
 		button.setText("Add Flight");
-		button.setTranslateX(5);
+		button.setTranslateX(2);
 		button.setTranslateY(100);
 
+		button2 = new Button();
+		button2.setText("Main menu");
+		button2.setTranslateX(200);
+		button2.setTranslateY(100);
+		
+		button2.setOnAction(new EventHandler<ActionEvent> () {
+
+			@Override
+			public void handle(ActionEvent event) {
+			
+			try {	
+
+              CustomerSuccess cbfa = new CustomerSuccess ();
+              cbfa.start(primaryStage);
+             
+		        
+			}
+			catch (Exception e) {
+	    		System.out.println(e);
+	    	}
+			}
+	    	
+	    });
 		
 		comboBox = new ComboBox ();
 		comboBox.getItems().addAll(
@@ -197,6 +220,7 @@ public class BookingPage extends Application {
         StackPane layout = new StackPane();
 		layout.getChildren().add(grid);
 		layout.getChildren().add(button);
+		layout.getChildren().add(button2);
 		
 		layout.setStyle("-fx-background-color: lightskyblue");
 

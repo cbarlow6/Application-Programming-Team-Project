@@ -326,6 +326,7 @@ public class HomePage extends Application {
 				String firstName = firstNameInput.getText(); 
 				String lastName = lastNameInput.getText();
 				String address = addressInput.getText();
+				
 				String city = cityInput.getText();
 				String state = stateInput.getText();
 				String zip = zipcodeInput.getText();
@@ -336,6 +337,13 @@ public class HomePage extends Application {
 				String securityQuestion = securityQuestionInput.getText();
 		    	
 		    	try {
+		    		
+		    		if (address.equals(null)) {
+		    			Alert a1 = new Alert(AlertType.ERROR);
+			    		a1.setTitle("Error");
+			    		a1.setContentText("Registration Error");
+			    		a1.showAndWait();
+					}
 		    		int i = UserAndDatabase.save(userName, firstName, lastName, address, city, state, zip, password, email, SSN, securityQuestion);
 		    		if (i>0) {
 		    		
